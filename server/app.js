@@ -11,15 +11,23 @@ const {JWT_SECRET} = require('./config/keys');
 mongoose.connect(MONGOURI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
+},(err)=>{
+    if(err){
+        console.log("err : ",err);
+    }
+    else{
+        
+        console.log("Database Connected ");
+    }
 });
 
-mongoose.connection.on('connected',()=>{
-    console.log("[DATABASE CONNECTED]");
-});
+// mongoose.connection.on('connected',()=>{
+//     console.log("[DATABASE CONNECTED]");
+// });
 
-mongoose.connection.on('error',(err)=>{
-    console.log("[DATABASE CONNECTION ERROR]:",err);
-});
+// mongoose.connection.on('error',(err)=>{
+//     console.log("[DATABASE CONNECTION ERROR]:",err);
+// });
 
 require('./models/user');
 require('./models/post');

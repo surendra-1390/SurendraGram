@@ -12,11 +12,11 @@ const requireLogin = require('../middleware/requireLogin');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 
-const transporter = nodemailer.createTransport(sendgridTransport({
-    auth : {
-        api_key : SEND_MAIL_API_KEY
-    }
-}))
+// const transporter = nodemailer.createTransport(sendgridTransport({
+//     auth : {
+//         api_key : SEND_MAIL_API_KEY
+//     }
+// }))
 
 
 // // email ----nodemailer
@@ -105,12 +105,12 @@ router.post('/signup',(req,res)=>{
             user.save()
             .then((user)=>{
                 
-                transporter.sendMail({
-                    to:user.email,
-                    from:"usoldevs@gmail.com",
-                    subject:"Successfully Signed Up",
-                    html: signupEmailTemplate(user.name)
-                })
+                // transporter.sendMail({
+                //     to:user.email,
+                //     from:"usoldevs@gmail.com",
+                //     subject:"Successfully Signed Up",
+                //     html: signupEmailTemplate(user.name)
+                // })
                 
                 return res.json({message:"SignUp Successful..."});
             })
@@ -175,16 +175,16 @@ router.post('/reset-password',(req,res)=>{
             user.resetToken = token
             user.expireToken = Date.now() + 3600000
             user.save().then((result)=>{
-                transporter.sendMail({
-                    to:user.email,
-                    from:"usoldevs@gmail.com",
-                    subject:"PostGram Password Reset",
-                    html: resetPasswordLink(`https://postgram-usoldevs.herokuapp.com/reset/${token}`)
-                    // `
-                    // <p>You can change your Password here.</p>
-                    // <h5>Click on the <a href="http://localhost:3000/reset/${token}">link</a> to reset password</h5>
-                    // `
-                })
+                // transporter.sendMail({
+                //     to:user.email,
+                //     from:"usoldevs@gmail.com",
+                //     subject:"PostGram Password Reset",
+                //     html: resetPasswordLink(`https://postgram-usoldevs.herokuapp.com/reset/${token}`)
+                //     // `
+                //     // <p>You can change your Password here.</p>
+                //     // <h5>Click on the <a href="http://localhost:3000/reset/${token}">link</a> to reset password</h5>
+                //     // `
+                // })
                 res.json({message:"Please check your Mail..."})
             })
 

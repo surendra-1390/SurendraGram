@@ -99,7 +99,7 @@ const CreatePost = () =>{
 
 
     // Posting image to cloudinary ---------------------
-    const postDetails = () =>{
+    const postDetails = () =>{  
 
         if(!title || !body){
             M.toast({html: `⚠️<span style="color:black" > Please provide suitable title & description...</span>`, classes:"yellow red accent-2" })
